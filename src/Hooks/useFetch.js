@@ -1,10 +1,3 @@
-# Custom Hook: useFetch
-
-Hook personalizado para hacer fetch sencillos trayendo como respuesta JSON.
-
-Esto es la **primera** versión que pruebo y uso, en un futuro puede ir cambiando he irla mejorando
-
-```js
 import { useState, useEffect } from 'react';
 
 export const useFetch = (url, options = null) => {
@@ -28,4 +21,3 @@ export const useFetch = (url, options = null) => {
 
 	return { res, error, loading };
 };
-```

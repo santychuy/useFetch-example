@@ -1,26 +1,20 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import { useFetch } from './Hooks/useFetch';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
-
-export default App;
+export default () => {
+	const { res, error, loading } = useFetch('https://api.kanye.rest');
+	return (
+		<div>
+			<h1>Una vez Kanye nos dijo: </h1>
+			<br />
+			{loading ? (
+				<h1>Cargando...</h1>
+			) : error !== null ? (
+				<h1>Hay un error: {error}</h1>
+			) : (
+				<h1>{res.quote}</h1>
+			)}
+		</div>
+	);
+};
