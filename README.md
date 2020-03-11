@@ -8,24 +8,25 @@ Esto es la **primera** versión que pruebo y uso, en un futuro puede ir cambiand
 import { useState, useEffect } from 'react';
 
 export const useFetch = (url, options = null) => {
-	const [res, setRes] = useState(null);
-	const [error, setError] = useState(null);
-	const [loading, setLoading] = useState(true);
+	const [state, setState] = useState({
+		res: null,
+		error: null,
+		loading: true,
+	});
 
 	useEffect(() => {
 		(async () => {
 			try {
 				const response = await fetch(url, options);
 				const json = await response.json();
-				setRes(json);
-				setLoading(false);
+				setState({ res: json, error: null, loading: false });
 			} catch (e) {
-				setError(e);
-				setLoading(false);
+				setState({ res: null, error: e, loading: false });
 			}
 		})();
 	}, []);
 
-	return { res, error, loading };
+	return state;
+};
 };
 ```
