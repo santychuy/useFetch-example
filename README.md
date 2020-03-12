@@ -28,5 +28,4 @@ export const useFetch = (url, options = null) => {
 
 	return state;
 };
-};
 ```
